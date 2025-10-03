@@ -1,86 +1,75 @@
-# Othello Game with Minimax Algorithm
+# Othello Game with Minimax & Expectimax Algorithms
 
-This project implements the classic board game Othello (also known as Reversi) using Python. It allows for two-player gameplay and also integrates the **Minimax** algorithm to provide an AI-based player. The game features a graphical board, alternating turns between two players, and a final score display.
+This project delivers a fully implemented version of the classic board game **Othello (Reversi)** using Python.  
+It supports **two-player gameplay** and provides a challenging **AI opponent** powered by the **Minimax** and **Expectimax** algorithms.  
 
-## Table of Contents
-1. [Project Structure](#project-structure)
-2. [How to Run](#how-to-run)
-3. [Game Rules](#game-rules)
-4. [Code Overview](#code-overview)
-5. [Agent (AI) Implementation](#agent-ai-implementation)
-6. [Minimax Algorithm](#minimax-algorithm)
+The game includes a graphical board built with `pygame`, smooth turn-based interaction, score tracking, and a proper winner declaration at the end.  
 
-## Project Structure
+---
 
-The project consists of the following Python files:
+## 🚀 Features
 
-- **`board.py`**: Contains the logic for the game board and managing valid moves.
-- **`main.py`**: The entry point to start and play the game.
-- **`minimax.py`**: Implements the minimax algorithm for AI decision-making.
-- **`expectimax.py`**: Implements the expectimax algorithm for AI decision-making.
-- **`player.py`**: Manages player interaction and moves.
-- **`game.py`**: Manages the overall flow of the game, handling turns, checking the game state, and determining the winner.
+- Complete implementation of Othello game rules  
+- Interactive 8x8 graphical board using `pygame`  
+- Two-player (human vs human) and human vs AI modes  
+- **AI opponent** powered by **Minimax** and **Expectimax** algorithms  
+- Score calculation and winner declaration  
+- Clear game loop and well-structured codebase  
 
-## How to Run
+---
 
-To run this Othello game on your local machine:
+## 📂 Project Structure
 
-1. import packages:
+- **`board.py`** → Handles the Othello board logic (valid moves, placing discs, scoring)  
+- **`game.py`** → Manages the game loop, player turns, and declares the winner  
+- **`player.py`** → Defines human and AI players (using Minimax or Expectimax)  
+- **`minimax.py`** → Implements the Minimax algorithm for decision-making  
+- **`expectimax.py`** → Implements the Expectimax algorithm for decision-making  
+- **`main.py`** → Entry point to run the game  
+
+---
+
+## 🖥️ How to Run
+
+1. Install dependencies:  
    ```bash
    pip install pygame
    ```
-2. run the project
-  ```
-  python main.py
-```
-   
 
+2. Run the game:  
+   ```bash
+   python main.py
+   ```
 
-## Game rules
+The game will launch with a graphical board, ready for play.
 
-### `board.py`
+---
 
-The `Board` class manages the 8x8 Othello board. It includes methods for:
+## 🎮 Game Rules (Summary)
 
-- **Displaying the board**: `display()`
-- **Retrieving valid moves for a player**: `get_valid_moves()`
-- **Placing a disc on the board**: `place_disc()`
-- **Checking if the board is full**: `is_full()`
-- **Calculating the score for both players**: `get_score()`
+- Players alternate placing discs on the board.  
+- A move must flank at least one of the opponent's discs horizontally, vertically, or diagonally.  
+- Flanked discs are flipped to the current player's color.  
+- The game ends when no valid moves remain or the board is full.  
+- The player with the most discs wins.  
 
-### `game.py`
+---
 
-The `Game` class manages the overall game loop and player interactions. It tracks which player's turn it is, checks if the game is over, and declares the winner. Key methods include:
+## 🧠 AI Implementation
 
-- **`start()`**: Runs the main game loop until the game ends.
-- **`switch_turns()`**: Alternates turns between players.
-- **`is_game_over()`**: Determines if the game has finished.
-- **`declare_winner()`**: Declares the winner based on the final score.
+The **AI agent** evaluates possible moves using:  
 
-### `main.py`
+- **Minimax** → Considers both players’ best moves, simulating outcomes up to a certain depth.  
+- **Expectimax** → Considers both optimal and probabilistic outcomes, making the AI more dynamic.  
 
-This file serves as the entry point for running the game. It initializes the players (human or AI) and starts the game.
+Both approaches aim to maximize the AI’s advantage while reducing the opponent’s chances.  
 
-### `player.py`
+---
 
-The `Agent` class in this file represents the players in the game. The player can be either a human or an AI. The file manages the player’s color and the logic for making moves. For AI players, the minimax algorithm is used to decide the best move.
+## 🔑 Key Concepts in the Algorithms
 
-## Agent (AI) Implementation
+- **Depth-limited search** → Prevents excessive computation by restricting the lookahead depth  
+- **Board evaluation** → Assigns a score based on disc count and board control  
+- **Decision-making** → AI selects the move leading to the most favorable evaluated state  
 
-Players can be human or AI-controlled. In the case of AI, the player uses the **Minimax** algorithm to make decisions. The minimax algorithm looks ahead several moves to evaluate potential game outcomes and tries to maximize the AI’s score while minimizing the opponent’s score.
-
-### `Agent Class` in `player.py`
-
-The `Agent` class:
-
-- **Human players**: Provide their moves through user input.
-- **AI players**: Make moves based on the Minimax algorithm, searching through possible board states to determine the best move.
-
-## Minimax Algorithm
-
-The minimax algorithm is implemented in the **`minimax.py`** file. It evaluates the board's state by simulating possible moves up to a certain depth and chooses the move that maximizes the player's advantage while minimizing the opponent's. This method makes the AI player challenging to defeat.
-
-### Key Features:
-
-- **Depth-limited search**: The algorithm considers moves up to a certain depth to make the decision process computationally feasible.
-- **Score evaluation**: It evaluates the current board state to estimate the advantage for the player based on the number of discs controlled.
+---
